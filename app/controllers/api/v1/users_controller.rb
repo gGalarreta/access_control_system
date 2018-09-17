@@ -1,6 +1,16 @@
 class Api::V1::UsersController < Api::ApiV1Controller
 
-  before_action :set_user, only: [:update, :show, :me, :destroy]
+  before_action :set_user, only: [:update, :show, :destroy]
+  before_action :set_workday, only: [:index, :create, :update, :show, :me]
+
+  def index
+    begin
+      @users = User.all 
+      render :users
+    rescue Exception => e
+      render json: {message: e}
+    end
+  end
 
   def create
     begin
@@ -29,7 +39,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
 
   def show
     begin
-      render :show
+      render :user
     rescue Exception => e
       render json: {message: e}
     end
@@ -53,7 +63,19 @@ class Api::V1::UsersController < Api::ApiV1Controller
     end
   end
 
+
   private
+
+    def set_workday
+      @workday = params[:workday]
+      if params[:workday] != nil
+        @workday = params[:workday] == "true" ? true : false
+      end
+    end
+
+    def extra_params
+      params.permit(:workday)
+    end
 
     def set_user
       @user = User.find params[:id]
