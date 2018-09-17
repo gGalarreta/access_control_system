@@ -4,6 +4,7 @@ class Api::ApiV1Controller < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_action :verify_current_user
   helper_method :current_user
+  helper_method :current_session
   respond_to :json
 
   def verify_current_user

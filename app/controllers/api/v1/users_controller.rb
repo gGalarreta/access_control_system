@@ -63,7 +63,6 @@ class Api::V1::UsersController < Api::ApiV1Controller
     end
   end
 
-
   private
 
     def set_workday

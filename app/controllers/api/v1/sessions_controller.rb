@@ -20,6 +20,14 @@ class Api::V1::SessionsController < Api::ApiV1Controller
     end
   end
 
+  def destroy
+    begin
+      current_session.destroy
+      render json: {message: "The session was deleted successfully"}
+    rescue Exception => e
+      render json: {message: e}
+    end
+  end
 
   private
 

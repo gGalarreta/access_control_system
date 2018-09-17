@@ -7,7 +7,9 @@ Rails.application.routes.draw do
         get :me, on: :collection
       end
 
-      resources :sessions, only: [:create, :destroy]
+      resources :sessions, only: [:create] do
+        delete :destroy, on: :collection
+      end
     end
   end
 end
