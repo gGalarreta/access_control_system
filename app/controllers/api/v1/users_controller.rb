@@ -1,10 +1,10 @@
 class Api::V1::UsersController < Api::ApiV1Controller
 
-  before_action :set_user, only: [:update, :show, :me]
+  before_action :set_user, only: [:update, :show, :me, :destroy]
 
   def create
     begin
-      @user = User.new user_params
+      @user = User.initialize user_params, params[:user][:need_password]
       if @user.save
         render :user
       else
@@ -39,6 +39,15 @@ class Api::V1::UsersController < Api::ApiV1Controller
     begin
       @user = current_user
       render :user
+    rescue Exception => e
+      render json: {message: e}
+    end
+  end
+
+  def destroy
+    begin
+      @user.destroy
+      render json: {message: "The user was deleted successfully"}
     rescue Exception => e
       render json: {message: e}
     end
