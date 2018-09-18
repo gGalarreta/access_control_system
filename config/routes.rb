@@ -9,6 +9,13 @@ Rails.application.routes.draw do
           put :checkin, on: :collection
           put :checkout, on: :collection
         end
+        resources :reports, only: [:index] do 
+          get :weekly, on: :collection, to: 'reports#employees'
+        end
+      end
+
+      resources :reports, only: [:index] do
+        get :weekly, on: :collection, to: 'reports#admin'
       end
 
       resources :sessions, only: [:create] do
