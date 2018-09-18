@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :users do 
         get :me, on: :collection
+        resources :workdays, only: [:index] do
+          put :checkin, on: :collection
+          put :checkout, on: :collection
+        end
       end
 
       resources :sessions, only: [:create] do
