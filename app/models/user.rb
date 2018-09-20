@@ -6,6 +6,7 @@ class User < ApplicationRecord
   enum gender: [:male, :female, :other]
 
   has_many :sessions, dependent: :destroy
+  has_many :workdays, dependent: :destroy
 
   DEFAULT_PASSWORD = "acspass2018"
 
