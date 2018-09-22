@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :web do
     resources :sessions, only: [:new, :create]
+    resources :users
   end
 
 
