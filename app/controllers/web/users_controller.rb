@@ -17,5 +17,4 @@ class Web::UsersController < ApplicationController
     
   end
 
-
 end
