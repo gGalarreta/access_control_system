@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+#The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web
+gem 'bootstrap', '~> 4.0.0.alpha6'
 
 #Pg is the Ruby interface to the {PostgreSQL RDBMS}
 gem 'pg', '~> 1.0'
@@ -43,11 +45,17 @@ gem 'pg', '~> 1.0'
 #Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.4', '>= 4.4.3'
 
+#Util library with awesome fonts
+gem 'font-awesome-rails', '~> 4.7.0.2'
+
 #Great Ruby dubugging companion: pretty print Ruby objects to visualize their structure. Supports custom object formatting via plugins
 gem 'awesome_print', '~> 1.8'
 
 # Seedbank allows you to structure your Rails seed data instead of having it all dumped into one large file
 gem "seedbank", '~> 0.3.0'
+
+#Jquery, you know the drill
+gem 'jquery-rails', '~> 4.3.1'
 
 #Shim to load environment variables from .env into ENV in development.
 gem 'dotenv-rails', groups: [:development, :test]

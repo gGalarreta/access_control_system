@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'web/sessions#new'
+
   devise_for :users
   namespace :api, default: {format: :json} do
     namespace :v1 do 
@@ -23,4 +25,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :web do
+    resources :sessions, only: [:new, :create]
+  end
+
+
 end

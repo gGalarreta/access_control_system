@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card sical-login">
+    <div class="login-title"><h1>Inicio de Sesión</h1></div>
+    <div class="login-content">
+      <div class="login-logo">
+        <%= image_tag "login.png", class: "login-img" %>
+      </div>
+      <div class="login-form">
+        <form accept-charset="UTF-8" action="/login" method="post">
+          <div class="field login-field">
+            <label for="session_email">Usuario</label><br>
+            <input class="form-control" name="user[email]" type="text" />
+          </div>
+
+          <div class="field login-field">
+            <label for="session_password">Contraseña</label><br>
+            <input class="form-control" name="user[password]" type="password" />
+          </div>
+
+          <div class="text-center">
+            <input class="btn btn-info btn-fill btn-wd login-button" name="Entrar" type="submit" value="Entrar" />
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
