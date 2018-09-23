@@ -19,6 +19,6 @@ class Web::ReportsController < ApplicationController
   end
 
   def employee
-    
+    render :employee_report
   end
 end
