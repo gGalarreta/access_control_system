@@ -1,11 +1,11 @@
-<%= form_tag web_users_path, method: :post, class: "form-horizontal validate sical-form sical-form-validated" do %>
+<%= form_tag path, method: method, class: "form-horizontal validate sical-form sical-form-validated" do %>
 
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
       <%= label_tag :Nombre %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <%= text_field_tag('user[first_name]', "", class: "form-control") %>
+      <%= text_field_tag('user[first_name]', user.first_name, class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
@@ -13,7 +13,7 @@
       <%= label_tag :Apellidos %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <%= text_field_tag('user[last_name]', "", class: "form-control") %>
+      <%= text_field_tag('user[last_name]', user.last_name, class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
@@ -21,7 +21,7 @@
       <%= label_tag :Correo %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <%= text_field_tag('user[email]', "", class: "form-control") %>
+      <%= text_field_tag('user[email]', user.email, class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
@@ -29,7 +29,7 @@
       <%= label_tag :Password %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <%= password_field_tag('user[password]', "", class: "form-control") %>
+      <%= password_field_tag('user[password]', "*************", class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
@@ -37,7 +37,7 @@
       <%= label_tag :Telefono %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <%= telephone_field('user[phone]', "", class: "form-control only-numbers") %>
+      <%= telephone_field('user[phone]', user.phone, class: "form-control only-numbers") %>
     </div>
   </div>
   <div class="form-group row">
@@ -51,7 +51,9 @@
   <div class="sical-form-buttons">
     <div class="text-center">
       <%= link_to "Cancelar", web_users_path, class: "btn btn-primary sical-btn-cancel" %>
-      <%= submit_tag "Guardar", class: "btn btn-primary sical-submit-btn" %>
+      <% unless (current_action == 'show') %>
+        <%= submit_tag "Guardar", class: "btn btn-primary sical-submit-btn" %>
+      <% end %>
   </div>
 </div>
 <% end %>

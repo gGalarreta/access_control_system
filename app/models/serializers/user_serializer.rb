@@ -26,10 +26,13 @@ class UserSerializer
     body    
   end
 
+  def user params
+    user_object(params["user"])
+  end
+
   private
 
   def user_object params
-    user = OpenStruct.new(id: params["id"], first_name: params["first_name"], last_name: params["last_name"], email: params["email"],
-      phone: params["phone"], gender: params["gender"])
+    user = OpenStruct.new(id: params["id"], first_name: params["first_name"], last_name: params["last_name"], email: params["email"], phone: params["phone"], gender: params["gender"])
   end
 end
