@@ -17,7 +17,21 @@ class Web::ReportsController < ApplicationController
   end
 
   def me
-    
+    begin
+      time = '22/09/2018 10:30:48'
+      options = {
+        'end_point': '/reports/weekly?time=' + time,
+        'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      }
+      response = ApiService.new().get(options)
+      @workdays = []
+      if response[:status] == 200
+        @workdays = WorkdaySerializer.new().workdays(response[:data])
+      end
+      render :me_report
+    rescue Exception => e
+      p e
+    end    
   end
 
   def employee
