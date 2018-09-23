@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require bootstrap-timepicker
 //= require urbanui/vendor/flot/jquery.flot.js
 //= require urbanui/vendor/moment.js
 //= require urbanui/vendor/jquery.dataTables.min.js

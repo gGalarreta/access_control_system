@@ -48,6 +48,9 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 #Util library with awesome fonts
 gem 'font-awesome-rails', '~> 4.7.0.2'
 
+#bootstrap-timepicker-rails project integrates Timepicker with Rails 3 assets pipeline.
+gem 'bootstrap-timepicker-rails'
+
 #Great Ruby dubugging companion: pretty print Ruby objects to visualize their structure. Supports custom object formatting via plugins
 gem 'awesome_print', '~> 1.8'
 

@@ -1,0 +1,61 @@
+<form accept-charset="UTF-8" action="/login" method="post" class="form-horizontal validate sical-form sical-form-validated">
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="first_name">Nombre</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <input class="form-control" name="user[first_name]" type="text" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="last_name">Apellido</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <input class="form-control" name="user[last_name]" type="text" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="email">Correo Electronico</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <input class="form-control" name="user[email]" type="text" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="password">Contraseña</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <input class="form-control" name="user[password]" type="text" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="phone">Telefono</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <input class="form-control only-numbers", minLength: "7", maxLength: "9" name="user[phone]" type="text" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3 col-fom-label">
+      <label for="gender">Sexo</label>
+    </div>
+    <div class="col-md-9 input-wrapper">
+      <select name="user[gender]">
+        <option value="male" selected="selected">Hombre</option>
+        <option value="female">Mujer</option>
+        <option value="other">Otros</option>
+      </select>
+    </div>
+  </div>
+  <div class="sical-form-buttons">
+    <div class="text-center">
+      <input class="btn btn-primary sical-btn-cancel" name="cancel" type="submit" value="Cancelar" />
+      <input class="btn btn-primary sical-submit-btn" name="save" type="submit" value="Guardar" />
+  </div>
+</div>
+
+

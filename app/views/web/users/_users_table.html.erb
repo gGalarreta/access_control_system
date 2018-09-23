@@ -1,0 +1,26 @@
+<div class="material-datatables">
+  <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%# employees.each do |employee| %>
+        <tr>
+          <td>Gustavo</td>
+          <td>Galarret Chapilliquen</td>
+          <td>gustavo.galarreta@pucp.pe</td>
+          <td>
+            <a href="/profiles" class="fa fa-eye"></a>
+            <a href="/profiles" class="fa fa-pencil"></a>
+            <a href="/profiles" class="fa fa-times"></a>
+          </td>
+        </tr>
+      <%# end %>
+    </tbody>
+  </table>
+</div>
