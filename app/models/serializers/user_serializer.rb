@@ -1,11 +1,9 @@
 class UserSerializer
 
-  attr_reader :data_tag
-
   def initialize(args = {})
   end
 
-  def all_users data
+  def users data
     users = data["users"].map { |user|
       user_object(user)
     }

@@ -10,11 +10,14 @@
       </tr>
     </thead>
     <tbody>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
+      <% workdays.each do |workday| %>
+        <td>
+          <% workday.data.each do |worked_days| %>
+            <%= worked_days.status %>
+            <%= Time.parse(worked_days.time).strftime("%I:%M%p") %>
+          <% end %>
+        </td>
+      <% end %>
     </tbody>
   </table>
 </div>

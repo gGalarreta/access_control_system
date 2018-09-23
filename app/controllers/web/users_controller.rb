@@ -12,7 +12,7 @@ class Web::UsersController < ApplicationController
     response = ApiService.new().get(options)
     @users = []
     if response[:status] == 200
-      @users = UserSerializer.new().all_users(response[:data])
+      @users = UserSerializer.new().users(response[:data])
     end
   end
 

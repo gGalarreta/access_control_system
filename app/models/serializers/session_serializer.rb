@@ -1,7 +1,5 @@
 class SessionSerializer
 
-  attr_reader :data_tag
-
   def initialize(args = {})
   end
 

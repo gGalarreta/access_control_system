@@ -8,8 +8,8 @@ class ApiService
   def initialize(args = {})
     @url = 'localhost:3000/api/v1/'
     @headers = {accept: :json}
-    @timeout = 5
-    @open_timeout = 5
+    @timeout = 10
+    @open_timeout = 10
   end
 
   def post body, params
