@@ -33,6 +33,10 @@ Rails.application.routes.draw do
       put :checkin, on: :collection
       put :checkout, on: :collection
     end
+    resources :reports, only: [:index] do
+      get :me, on: :collection
+      get :employee, on: :member
+    end
   end
 
 

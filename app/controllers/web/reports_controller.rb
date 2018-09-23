@@ -1,4 +1,5 @@
-class Web::WorkdaysController < ApplicationController
+class Web::ReportsController < ApplicationController
+
   layout "admin"
 
   def index
@@ -10,15 +11,14 @@ class Web::WorkdaysController < ApplicationController
     @users = []
     if response[:status] == 200
       @users = UserSerializer.new().all_users(response[:data])
-    end
+    end    
   end
 
-  def checkin
+  def me
     
   end
 
-  def checkout
+  def employee
     
   end
-  
 end
