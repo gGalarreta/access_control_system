@@ -16,7 +16,7 @@ class ApiService
     begin
       url_service = end_point_handler params
       headers_service = token_handler params
-      service_response = RestClient::Request.execute(method: :post, url: url, payload: body, timeout: timeout, open_timeout: open_timeout, headers: headers_service)
+      service_response = RestClient::Request.execute(method: :post, url: url_service, payload: body, timeout: timeout, open_timeout: open_timeout, headers: headers_service)
       response = {
         "status": service_response.code,
         "data": JSON.parse(service_response)

@@ -1,61 +1,58 @@
-<form accept-charset="UTF-8" action="/login" method="post" class="form-horizontal validate sical-form sical-form-validated">
+<%= form_tag web_users_path, method: :post, class: "form-horizontal validate sical-form sical-form-validated" do %>
+
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="first_name">Nombre</label>
+      <%= label_tag :Nombre %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <input class="form-control" name="user[first_name]" type="text" />
+      <%= text_field_tag('user[first_name]', "", class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="last_name">Apellido</label>
+      <%= label_tag :Apellidos %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <input class="form-control" name="user[last_name]" type="text" />
+      <%= text_field_tag('user[last_name]', "", class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="email">Correo Electronico</label>
+      <%= label_tag :Correo %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <input class="form-control" name="user[email]" type="text" />
+      <%= text_field_tag('user[email]', "", class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="password">Contraseña</label>
+      <%= label_tag :Password %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <input class="form-control" name="user[password]" type="text" />
+      <%= password_field_tag('user[password]', "", class: "form-control") %>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="phone">Telefono</label>
+      <%= label_tag :Telefono %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <input class="form-control only-numbers", minLength: "7", maxLength: "9" name="user[phone]" type="text" />
+      <%= telephone_field('user[phone]', "", class: "form-control only-numbers") %>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-md-3 col-fom-label">
-      <label for="gender">Sexo</label>
+      <%= label_tag :Sexo %>
     </div>
     <div class="col-md-9 input-wrapper">
-      <select name="user[gender]">
-        <option value="male" selected="selected">Hombre</option>
-        <option value="female">Mujer</option>
-        <option value="other">Otros</option>
-      </select>
+      <%= select_tag 'user[gender]', options_for_select([ "male", "female" ], "male") %>
     </div>
   </div>
   <div class="sical-form-buttons">
     <div class="text-center">
-      <input class="btn btn-primary sical-btn-cancel" name="cancel" type="submit" value="Cancelar" />
-      <input class="btn btn-primary sical-submit-btn" name="save" type="submit" value="Guardar" />
+      <%= link_to "Cancelar", web_users_path, class: "btn btn-primary sical-btn-cancel" %>
+      <%= submit_tag "Guardar", class: "btn btn-primary sical-submit-btn" %>
   </div>
 </div>
-
+<% end %>
 

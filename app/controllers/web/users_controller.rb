@@ -1,5 +1,5 @@
 class Web::UsersController < ApplicationController
-  
+
   layout "admin"
 
   def index
@@ -12,6 +12,9 @@ class Web::UsersController < ApplicationController
   end
 
   def new
+  end
+
+  def create
     options = {
       'end_point': 'users',
       'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
@@ -22,7 +25,7 @@ class Web::UsersController < ApplicationController
       redirect_to web_users_path
     else
       render :new
-    end    
+    end
   end
 
   def show
