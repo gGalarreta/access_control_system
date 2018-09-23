@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.1'
 #gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +33,10 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
+#Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
+gem 'rest-client'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
