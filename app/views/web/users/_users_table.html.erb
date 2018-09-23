@@ -9,18 +9,18 @@
       </tr>
     </thead>
     <tbody>
-      <%# employees.each do |employee| %>
+      <% users.each do |user| %>
         <tr>
-          <td>Gustavo</td>
-          <td>Galarret Chapilliquen</td>
-          <td>gustavo.galarreta@pucp.pe</td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
           <td>
             <a href="/profiles" class="fa fa-eye"></a>
             <a href="/profiles" class="fa fa-pencil"></a>
             <a href="/profiles" class="fa fa-times"></a>
           </td>
         </tr>
-      <%# end %>
+      <% end %>
     </tbody>
   </table>
 </div>
