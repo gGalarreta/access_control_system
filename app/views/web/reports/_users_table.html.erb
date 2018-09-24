@@ -2,9 +2,9 @@
   <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
     <thead>
       <tr>
-        <th>Empleado</th>
+        <th>Nombre</th>
         <th>Correo</th>
-        <th>Registro</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -13,15 +13,10 @@
           <td><%= user.first_name %> <%= user.last_name %> </td>
           <td><%= user.email %></td>
           <td>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#checkinModal">Entrada</button>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#checkoutModal">Salida</button>
-            <%= render 'checkin' %>
-            <%= render 'checkout' %>
+            <%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, employee_web_report_path(user.id), class: "btn btn-info btn-sm" %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-

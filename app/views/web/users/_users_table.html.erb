@@ -9,18 +9,18 @@
       </tr>
     </thead>
     <tbody>
-      <%# employees.each do |employee| %>
+      <% users.each do |user| %>
         <tr>
-          <td>Gustavo</td>
-          <td>Galarret Chapilliquen</td>
-          <td>gustavo.galarreta@pucp.pe</td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
           <td>
-            <a href="/profiles" class="fa fa-eye"></a>
-            <a href="/profiles" class="fa fa-pencil"></a>
-            <a href="/profiles" class="fa fa-times"></a>
+            <%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, web_user_path(user.id), class: "btn btn-info btn-sm" %>
+            <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_web_user_path(user.id), class: "btn btn-success btn-sm" %>
+            <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, web_user_path(user.id), method: :delete, class: "btn btn-success btn-sm" %>
           </td>
         </tr>
-      <%# end %>
+      <% end %>
     </tbody>
   </table>
 </div>

@@ -1,0 +1,23 @@
+<div class="material-datatables">
+  <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
+    <thead>
+      <tr>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% workdays.each do |workday| %>
+        <td>
+          <% workday.data.each do |worked_days| %>
+            <%= worked_days.status %>
+            <%= Time.parse(worked_days.time).strftime("%I:%M%p") %>
+          <% end %>
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
