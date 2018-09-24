@@ -4,7 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+session:
+  access_token: "Vz_1dSc9rKju9R88IuTVy6KEvo1SokNgk1zmZAywMQQ"
+  
 # column: value
 #
 two: {}
