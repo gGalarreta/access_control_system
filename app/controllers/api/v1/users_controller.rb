@@ -2,7 +2,8 @@ class Api::V1::UsersController < Api::ApiV1Controller
 
   before_action :set_user, only: [:update, :show, :destroy]
   before_action :set_workday, only: [:index, :create, :update, :show, :me]
-  
+  skip_before_action :verify_current_user, only: [:index, :create, :update, :show]
+
   def index
     begin
       @users = User.all 
@@ -77,7 +78,11 @@ class Api::V1::UsersController < Api::ApiV1Controller
     end
 
     def set_user
-      @user = User.find params[:id]
+      begin
+        @user = User.find params[:id]
+      rescue Exception => e
+        response_error(title: "Bad Request", reasons: {params: "are invalid"}, description: "You must include a valid user id", status_code: 400)
+      end
     end
 
     def user_params
