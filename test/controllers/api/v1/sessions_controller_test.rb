@@ -22,5 +22,10 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
 =end
   end
 
-  
+  test "DELETE #destroy" do
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
+    delete :destroy
+    assert_response :success
+  end
 end
