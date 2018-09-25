@@ -1,6 +1,7 @@
 class Api::V1::WorkdaysController < Api::ApiV1Controller
 
   before_action :set_user, only: [:checkin, :checkout]
+  skip_before_action :verify_current_user, only: [:checkin, :checkout]
 
   def checkin
     begin

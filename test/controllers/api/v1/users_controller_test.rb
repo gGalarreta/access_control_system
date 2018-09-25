@@ -30,7 +30,6 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     }
     post :create, params: { user: user }
     assert_response :success
-
   end
 
   test "PUT #update" do
