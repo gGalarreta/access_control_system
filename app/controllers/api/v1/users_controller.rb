@@ -14,15 +14,15 @@ class Api::V1::UsersController < Api::ApiV1Controller
   end
 
   def create
+    @user = User.initialize user_params, params[:user][:need_password]
     begin
-      @user = User.initialize user_params, params[:user][:need_password]
       if @user.save
         render :user
       else
         response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -34,7 +34,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
         response_error(title: 'Could not update', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -51,7 +51,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
       @user = current_user
       render :user
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not get data', reasons: {params: "are invalid"}, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -60,7 +60,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
       @user.destroy
       render json: {message: "The user was deleted successfully"}
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "There are invalid values", status_code: 422)
     end
   end
 

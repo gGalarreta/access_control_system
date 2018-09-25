@@ -10,5 +10,4 @@ user:
   phone: "993702585"
   gender: "male"
   email: "gustavo.galarreta@pucp.pe"
-# column: value
-# column: value
+  encrypted_password: "$2a$11$J1i.dr7mjpTvMjoIfpk9FOFnqu/Ngd/Q9I9DKsqLkq2p3.5rfyPE2"

@@ -8,9 +8,25 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   end
 
   test "POST #create" do
-    user = users(:user)
+    user_mock = users(:user)
+    user = 
+    {
+        "first_name": user_mock.first_name,
+        "email": user_mock.email,
+        "phone": user_mock.phone,
+        "password": user_mock.encrypted_password,
+        "gender": user_mock.gender
+    }
     post :create, params: { user: user }
-    assert_response :success
+    assert_response 422
+  end
+
+  test "PUT #update" do
+    user = users(:user)
+    put :update, params: { id: user.id }
+    assert_response 422
+    get :show, params: { id: "" }
+    assert_response 400 
   end
 
   test "GET #show" do
@@ -21,12 +37,17 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     assert_response 400
   end
 
-  test "PUT #update" do
+  test "GET #me" do
+    get :me
+    assert_response 400
+  end
+
+  test "DELETE #destroy" do
     user = users(:user)
-    put :update, params: { id: user.id }
-    assert_response :success
-    get :show, params: { id: "" }
-    assert_response 400  
+    get :destroy, params: { id: user.id }
+    assert_response 400
+    delete :destroy, params: { id: "" }
+    assert_response 400
   end
 
 end
