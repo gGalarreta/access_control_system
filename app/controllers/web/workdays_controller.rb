@@ -4,7 +4,7 @@ class Web::WorkdaysController < ApplicationController
   def index
     options = {
       'end_point': 'users?workday=false',
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     response = ApiService.new().get(options)
     @users = []
