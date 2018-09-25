@@ -1,15 +1,26 @@
 require 'test_helper'
 
-class Api::V1::SessionsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+class Api::V1::SessionsControllerTest < ActionController::TestCase
 
-  #test "create should be success" do
-    #session = sessions(:session)
+  test "POST #create" do
+    user_mock = users(:user)
+    user = 
+    {
+      "email": user_mock.email,
+      "password": user_mock.encrypted_password,
+    }
+    post :create, params: { user: user }
+    assert_response 422
+=begin
+    user = 
+    {
+      "email": "gustavo.galarreta@pucp.pe",
+      "password": "password1857",
+    }
+    post :create, params: { user: user }
+    assert_response :success
+=end
+  end
 
-    #get :create, 
-
-    #assert_response :success
-  #end
+  
 end
