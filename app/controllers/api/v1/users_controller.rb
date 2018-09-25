@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
 
   before_action :set_user, only: [:update, :show, :destroy]
   before_action :set_workday, only: [:index, :create, :update, :show, :me]
-
+  
   def index
     begin
       @users = User.all 
