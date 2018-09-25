@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
 
   before_action :set_user, only: [:update, :show, :destroy]
   before_action :set_workday, only: [:index, :create, :update, :show, :me]
-  skip_before_action :verify_current_user, only: [:index, :create, :update, :show]
+  skip_before_action :verify_current_user, only: [:index, :create, :update, :show, :destroy]
 
   def index
     begin
@@ -22,7 +22,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
         response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
+      render json: {message: e}
     end
   end
 
@@ -34,7 +34,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
         response_error(title: 'Could not update', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "There are invalid values", status_code: 422)
+      render json: {message: e}
     end
   end
 
@@ -60,7 +60,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
       @user.destroy
       render json: {message: "The user was deleted successfully"}
     rescue Exception => e
-      response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "There are invalid values", status_code: 422)
+      render json: {message: e}
     end
   end
 
