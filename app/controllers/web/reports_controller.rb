@@ -3,11 +3,12 @@ class Web::ReportsController < ApplicationController
   layout "admin"
 
   before_action :set_user, only: [:employee]
+  before_action :set_time, only: [:me, :employee]
 
   def index
     options = {
       'end_point': 'users?workday=false',
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     response = ApiService.new().get(options)
     @users = []
@@ -18,10 +19,9 @@ class Web::ReportsController < ApplicationController
 
   def me
     begin
-      time = '22/09/2018 10:30:48'
       options = {
-        'end_point': '/reports/weekly?time=' + time,
-        'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+        'end_point': '/reports/weekly?time=' + @time,
+        'token': cookies[:session_token]
       }
       response = ApiService.new().get(options)
       @workdays = []
@@ -36,10 +36,9 @@ class Web::ReportsController < ApplicationController
 
   def employee
     begin
-      time = '22/09/2018 10:30:48'
       options = {
-        'end_point': 'users/' + params["id"] + '/reports/weekly?time=' + time,
-        'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+        'end_point': 'users/' + params["id"] + '/reports/weekly?time=' + @time,
+        'token': cookies[:session_token]
       }
       response = ApiService.new().get(options)
       @workdays = []
@@ -57,12 +56,16 @@ class Web::ReportsController < ApplicationController
     def set_user
       options = {
         'end_point': 'users/' + params["id"],
-        'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+        'token': cookies[:session_token]
       }
       response = ApiService.new().get(options)
       @users = nil
       if response[:status] == 200
         @user = UserSerializer.new().user(response[:data])
       end     
+    end
+
+    def set_time
+      @time = Time.now.to_s
     end
 end

@@ -7,7 +7,7 @@ class Web::UsersController < ApplicationController
   def index
     options = {
       'end_point': 'users?workday=false',
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     response = ApiService.new().get(options)
     @users = []
@@ -24,7 +24,7 @@ class Web::UsersController < ApplicationController
   def create
     options = {
       'end_point': 'users',
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     body = UserSerializer.new().create_user(user_params)
     response = ApiService.new().post(body, options)
@@ -44,7 +44,7 @@ class Web::UsersController < ApplicationController
   def update
     options = {
       'end_point': 'users/' + params["id"],
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     body = UserSerializer.new().create_user(user_params)
     response = ApiService.new().put(body, options)
@@ -58,7 +58,7 @@ class Web::UsersController < ApplicationController
   def destroy
     options = {
       'end_point': 'users/' + params["id"],
-      'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+      'token': cookies[:session_token]
     }
     response = ApiService.new().delete(options)
     redirect_to web_users_path
@@ -72,7 +72,7 @@ class Web::UsersController < ApplicationController
     def set_user
       options = {
         'end_point': 'users/' + params["id"],
-        'token': 'MkD58JRFXn3mrrgVzRbdXhuhyaJTVMlGv_dNO4HBZ1w'
+        'token': cookies[:session_token]
       }
       response = ApiService.new().get(options)
       @users = nil
