@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   end
 
   namespace :web do
-    resources :sessions, only: [:new, :create]
+    resources :sessions, only: [:new, :create] do
+      delete :logout, on: :collection
+    end
     resources :users
     resources :workdays, only: [:index] do
       put :checkin, on: :collection
