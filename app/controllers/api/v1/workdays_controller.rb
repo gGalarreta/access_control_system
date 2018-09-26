@@ -5,34 +5,46 @@ class Api::V1::WorkdaysController < Api::ApiV1Controller
 
   def checkin
     begin
-      @user.workdays.build(register_params.merge(status: :in))
-      if @user.save
-        render json: {message: "the workday has been setted successfully"}
+      if register_params[:time]
+        @user.workdays.build(register_params.merge(status: :in))
+        if @user.save
+          render json: {message: "the workday has been setted successfully"}
+        else
+          response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
+        end
       else
-        response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
+        response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "Time is required", status_code: 422)
       end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: "Bad Request", reasons: {params: "are invalid"}, description: "You must set the valid params", status_code: 422)
     end
   end
 
   def checkout
     begin
-      @user.workdays.build(register_params.merge(status: :out))
-      if @user.save
-        render json: {message: "the workday has been setted successfully"}
+      if register_params[:time]
+        @user.workdays.build(register_params.merge(status: :out))
+        if @user.save
+          render json: {message: "the workday has been setted successfully"}
+        else
+          response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
+        end      
       else
-        response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
-      end      
+        response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "Time is required", status_code: 422)
+      end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: "Bad Request", reasons: {params: "are invalid"}, description: "You must set the valid params", status_code: 422)
     end
   end
 
   private
 
     def set_user
-      @user = User.find params[:user_id]
+      begin
+        @user = User.find params[:user_id]
+      rescue Exception => e
+        response_error(title: "Bad Request", reasons: {params: "are invalid"}, description: "You must include a valid user id", status_code: 400)
+      end
     end
 
     def register_params
