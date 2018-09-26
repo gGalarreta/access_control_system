@@ -1,0 +1,31 @@
+  <div class="modal-content" >
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="time-station-modal-label">Edit Check in/out</h4>
+    </div>
+    <%= form_tag register_checkin_web_workdays_path, method: :put, class: "form-horizontal validate sical-form sical-form-validated" do %>
+      <div class="modal-body">
+        <div class="input-group">
+          <%#= user_id %>
+          <span class="input-group-addon">Name</span>
+          <p class="form-control"><%#= time_station.user.full_name %></p>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon">Type</span>
+          <p class="form-control"><%#= time_station.is_checkin? ? "IN" : "OUT" %></p>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon">New Time</span>
+          <%#= f.text_field :created_at, value: datetime_format(time_station.created_at), class: "form-control" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag "Guardar", class: "btn btn-primary sical-submit-btn" %>
+      </div>
+    <% end %>
+  </div>
+
+<script type="text/javascript">
+  // $(".datetimepicker").datetimepicker();
+</script>

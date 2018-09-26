@@ -14,11 +14,20 @@ class Web::WorkdaysController < ApplicationController
   end
 
   def checkin
-    
+    @user_id = params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def checkout
-    
+  end
+
+  def register_checkin
+  end
+
+  def register_checkout
   end
   
 end
