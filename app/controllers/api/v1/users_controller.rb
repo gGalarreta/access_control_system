@@ -22,7 +22,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
         response_error(title: 'Could not register', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "invalid parameters"}, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -34,7 +34,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
         response_error(title: 'Could not update', reasons: @user.errors.messages, description: "There are invalid values", status_code: 422)
       end
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "invalid parameters"}, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -42,7 +42,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
     begin
       render :user
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "invalid parameters"}, description: "There are invalid values", status_code: 422)
     end
   end
 
@@ -60,7 +60,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
       @user.destroy
       render json: {message: "The user was deleted successfully"}
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: 'Could not register', reasons: {params: "invalid parameters"}, description: "There are invalid values", status_code: 422)
     end
   end
 

@@ -3,23 +3,27 @@ require 'test_helper'
 class Api::V1::SessionsControllerTest < ActionController::TestCase
 
   test "POST #create" do
+    #DATA
     user_mock = users(:user)
-    user = 
+    existed_user = 
     {
       "email": user_mock.email,
       "password": user_mock.encrypted_password,
     }
-    post :create, params: { user: user }
-    assert_response 422
-=begin
-    user = 
+    new_user = 
     {
       "email": "gustavo.galarreta@pucp.pe",
       "password": "password1857",
     }
-    post :create, params: { user: user }
+
+    post :create, params: { user: new_user, format: 'json' }
     assert_response :success
-=end
+    
+    #ERRORS
+    #existed user
+    post :create, params: { user: existed_user }
+    assert_response 422
+
   end
 
   test "DELETE #destroy" do

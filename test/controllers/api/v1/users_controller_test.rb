@@ -37,7 +37,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     user_with_invalid_email 
 
     #valid data
-    post :create, params: { user: new_user }
+    post :create, params: { user: new_user, format: 'json' }
     assert_response :success
 
     #ERRORS
@@ -72,14 +72,14 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     }
 
     
-    #without params
-    put :update, params: { id: user_mock.id }
-    assert_response :success
     #valid data
-    put :update, params: { id: user_mock.id, user: user }
+    put :update, params: { id: user_mock.id, user: user, format: 'json' }
     assert_response :success
     
     #ERRORS
+    #without params
+    put :update, params: { id: user_mock.id, format: 'json' }
+    assert_response 422
     #without id
     put :update, params: { id: "" }
     assert_response 400 
@@ -90,7 +90,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
 
   test "GET #show" do
     user = users(:user)
-    get :show, params: { id: user.id }
+    get :show, params: { id: user.id, format: 'json'}
     assert_response :success
     get :show, params: { id: "" }
     assert_response 400
