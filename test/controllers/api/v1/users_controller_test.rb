@@ -8,19 +8,9 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   end
 
   test "POST #create" do
+    #DATA
     user_mock = users(:user)
-    user = 
-    {
-        "first_name": user_mock.first_name,
-        "email": user_mock.email,
-        "phone": user_mock.phone,
-        "password": user_mock.encrypted_password,
-        "gender": user_mock.gender
-    }
-    post :create, params: { user: user }
-    assert_response 422
-    user_mock = users(:user)
-    user = 
+    new_user = 
     {
         "first_name": user_mock.first_name,
         "email": "gustavo.galarreta2@pucp.pe",
@@ -28,16 +18,74 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
         "password": user_mock.encrypted_password,
         "gender": user_mock.gender
     }
-    post :create, params: { user: user }
+    existed_user = 
+    {
+        "first_name": user_mock.first_name,
+        "email": user_mock.email,
+        "phone": user_mock.phone,
+        "password": user_mock.encrypted_password,
+        "gender": user_mock.gender
+    }
+    user_with_invalid_email = 
+    {
+        "first_name": "test",
+        "email": "test",
+        "phone": "993702585",
+        "password": "password1857",
+        "gender": "male"
+    }
+    user_with_invalid_email 
+
+    #valid data
+    post :create, params: { user: new_user }
     assert_response :success
+
+    #ERRORS
+    #email taken
+    post :create, params: { user: existed_user }
+    assert_response 422
+    #invalid email format
+    post :create, params: { user: user_with_invalid_email }
+    assert_response 422    
   end
 
   test "PUT #update" do
-    user = users(:user)
-    put :update, params: { id: user.id }
+
+    #DATA
+
+    user_mock = users(:user)
+    user = 
+    {
+        "first_name": "test",
+        "email": "test@test.com",
+        "phone": "993702585",
+        "password": "password1857",
+        "gender": "male"
+    }
+    existed_user = 
+    {
+        "first_name": user_mock.first_name,
+        "email": "test@pucp.pe",
+        "phone": user_mock.phone,
+        "password": user_mock.encrypted_password,
+        "gender": user_mock.gender
+    }
+
+    
+    #without params
+    put :update, params: { id: user_mock.id }
     assert_response :success
-    get :show, params: { id: "" }
+    #valid data
+    put :update, params: { id: user_mock.id, user: user }
+    assert_response :success
+    
+    #ERRORS
+    #without id
+    put :update, params: { id: "" }
     assert_response 400 
+    #email taken
+    put :update, params: { id: user_mock.id, user: existed_user }
+    assert_response 422
   end
 
   test "GET #show" do
@@ -55,7 +103,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
 
   test "DELETE #destroy" do
     user = users(:user)
-    get :destroy, params: { id: user.id }
+    delete :destroy, params: { id: user.id }
     assert_response :success
     delete :destroy, params: { id: "" }
     assert_response 400
