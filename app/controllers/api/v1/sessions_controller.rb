@@ -25,7 +25,7 @@ class Api::V1::SessionsController < Api::ApiV1Controller
       current_session.destroy
       render json: {message: "The session was deleted successfully"}
     rescue Exception => e
-      render json: {message: e}
+      response_error(title: "The session could not be initiated", reasons: {email: "invalid token"}, description: "Try again with valid values", status_code: 400)
     end
   end
 
