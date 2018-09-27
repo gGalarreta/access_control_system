@@ -46,10 +46,10 @@ class User < ApplicationRecord
               workday.time.strftime("%u").to_i == day_of_week
             }.as_json
       }
-      if workday['data'] and (workday['data'].size == 2)
-        checkin = Time.parse(workday['data'].first[:time])
-        checkout = Time.parse(workday['data'].second[:time])
-        amount_time+=(checkout-checkin)/60
+      if workday[:data] and (workday[:data].size == 2)
+        checkin = Time.parse(workday[:data].first["time"].to_s)
+        checkout = Time.parse(workday[:data].second["time"].to_s)
+        amount_time+=(checkout-checkin)/3600
       end
       weekly_report_data.append(workday.as_json)
     end
