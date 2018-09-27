@@ -34,7 +34,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#Simple wrapper around IZITOAST js notification plugin
+gem 'izitoast', '~> 1.2'
 
+#jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+ asset pipeline
 gem 'jquery-ui-rails'
 
 #Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
