@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:index] do
       get :me, on: :collection
       get :employee, on: :member
+      get :search, on: :collection
     end
   end
 

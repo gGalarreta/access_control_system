@@ -4,6 +4,8 @@ class Api::V1::ReportsControllerTest < ActionController::TestCase
 
   test "GET #employees" do
     user = users(:user)
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
 
     time = Time.now.to_s
     get :employees, params: { user_id: user.id, time: time}

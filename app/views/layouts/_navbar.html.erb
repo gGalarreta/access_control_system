@@ -7,11 +7,11 @@
   <div class="navbar-collapse" id="navbarItems" >
     <ul class="nav navbar-nav ml-auto">
       <li style="height: 77px;"">
-        <a href="#" class="dropdown-toggle nav-link sical-dropdown" data-toggle="dropdown">
+        <a href="#" class="dropdown-toggle nav-link sical-dropdown" data-toggle="dropdown" style="margin-left: 90%;">
           <i class="ti-user nav-icon"></i>
           <p class="hidden-lg-up">Logout</p>
         </a>
-        <div class="dropdown-menu only-dropdown" aria-labelledby="notificationList">
+        <div class="dropdown-menu only-dropdown" aria-labelledby="notificationList" style="margin-left: 90%;">
           <% if @signed_in %>
             <%= link_to "Logout", logout_web_sessions_path, method: :delete, class: "dropdown-item" %>
           <% end %>

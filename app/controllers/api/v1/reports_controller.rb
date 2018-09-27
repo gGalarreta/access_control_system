@@ -1,7 +1,6 @@
 class Api::V1::ReportsController < Api::ApiV1Controller
 
   before_action :set_user, only: [:employees]
-  skip_before_action :verify_current_user, only: [:employees]
 
   def employees
     begin

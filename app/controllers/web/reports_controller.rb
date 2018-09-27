@@ -63,6 +63,20 @@ class Web::ReportsController < ApplicationController
     end
   end
 
+  def search
+    @user_id = params["user_id"]
+    options = {
+      'end_point': 'users/' +  @user_id + '/reports/weekly?time=' + params["time"],
+      'token': cookies[:session_token]
+    }
+    response = ApiService.new().get(options)
+    @workdays = []
+    @amount_time = ""
+    if response[:status] == 200
+      @workdays, @amount_time = WorkdaySerializer.new().workdays(response[:data])
+    end
+  end
+
   private
 
     def set_user

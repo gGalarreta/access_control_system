@@ -1,1 +1,5 @@
-User.create(first_name: "Gustavo", last_name: "Galarreta Chapilliquen", phone: "555555555", gender: 0, role: 1, email: "gustavo.galarreta@pucp.pe", password: "password1857")
+User.create(first_name: "Gustavo", last_name: "Galarreta Chapilliquen", phone: "555555555", gender: 0, role: 1, email: "gustavo.galarreta@pucp.pe", password: "pass2018")
+User.create(first_name: "jhon", last_name: "Doe", phone: "555555555", gender: 0, role: 0, email: "jdoe@test.com", password: "pass2018")
+User.create(first_name: "Admin", last_name: "Test", phone: "555555555", gender: 0, role: 1, email: "admin@test.com", password: "pass2018")
+User.create(first_name: "Employee 1", last_name: "Test", phone: "555555555", gender: 1, role: 0, email: "emp1@test.com", password: "pass2018")
+User.create(first_name: "Employee 1", last_name: "Test", phone: "555555555", gender: 1, role: 0, email: "emp2@test.com", password: "pass2018")
