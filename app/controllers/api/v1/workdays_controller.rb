@@ -6,7 +6,7 @@ class Api::V1::WorkdaysController < Api::ApiV1Controller
   def checkin
     begin
       if register_params[:time]
-        @user.workdays.build(register_params.merge(status: :in))
+        @user.save_workday(register_params.merge(status: "in"))
         if @user.save
           render json: {message: "the workday has been setted successfully"}
         else
@@ -23,7 +23,7 @@ class Api::V1::WorkdaysController < Api::ApiV1Controller
   def checkout
     begin
       if register_params[:time]
-        @user.workdays.build(register_params.merge(status: :out))
+        @user.save_workday(register_params.merge(status: "out"))
         if @user.save
           render json: {message: "the workday has been setted successfully"}
         else

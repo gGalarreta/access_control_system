@@ -3,6 +3,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :phone, numericality: true, length: { minimum:  7, maximum:  9 }
+
   enum gender: [:male, :female, :other]
   enum role: [:employee, :admin]
 
@@ -25,9 +27,12 @@ class User < ApplicationRecord
 
   def get_workdays current_date
     current_date = current_date.to_date
-    beginning_of_week = current_date.at_beginning_of_week
-    end_of_week = current_date.at_end_of_week
-    workdays = self.workdays.in_daterange(beginning_of_week, end_of_week)
+    workdays = self.workdays.in_daterange(current_date.at_beginning_of_week, current_date.at_end_of_week)
+  end
+
+  def get_workdays_in_time current_date
+    current_date = current_date.to_date
+    workdays = self.workdays.in_daterange(current_date.beginning_of_day, current_date.end_of_day)    
   end
 
   def weekly_report current_date
@@ -49,6 +54,22 @@ class User < ApplicationRecord
       weekly_report_data.append(workday.as_json)
     end
     return weekly_report_data, amount_time
+  end
+
+  def save_workday params
+    workdays_in_time = self.get_workdays_in_time params[:time]
+    register_workday = []
+    if workdays_in_time
+      register_workday = workdays_in_time.select{ |workday|
+        workday.status == params[:status]
+      }
+    end
+    unless register_workday.empty?
+      register_workday.first.update_attributes(time: params[:time])
+    else
+      self.workdays.build(params)
+    end
+    self
   end
 
 end
