@@ -6,7 +6,7 @@ class ApiService
   attr_reader :url, :headers, :timeout, :open_timeout
 
   def initialize(args = {})
-    @url = 'localhost:3000/api/v1/'
+    @url = ENV['URL_APP'] || 'localhost:3000/api/v1/'
     @headers = {accept: :json}
     @timeout = 10
     @open_timeout = 10
