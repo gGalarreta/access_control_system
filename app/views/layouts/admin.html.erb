@@ -18,6 +18,9 @@
             <%= image_tag "polygonal-loader2.gif" %>
           </div>
           <div id="content" class="hidden">
+            <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
             <%= yield %>
           </div>
         </div>

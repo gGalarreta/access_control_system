@@ -5,14 +5,20 @@ class Web::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit]
 
   def index
-    options = {
-      'end_point': 'users?workday=false',
-      'token': cookies[:session_token]
-    }
-    response = ApiService.new().get(options)
-    @users = []
-    if response[:status] == 200
-      @users = UserSerializer.new().users(response[:data])
+    begin
+      options = {
+        'end_point': 'users?workday=false',
+        'token': cookies[:session_token]
+      }
+      response = ApiService.new().get(options)
+      @users = []
+      if response[:status] == 200
+        @users = UserSerializer.new().users(response[:data])
+      else
+        flash.now[:success] = 'A ocurrido un error'
+      end
+    rescue Exception => e
+      render 'errors/400'
     end
   end
 
@@ -20,16 +26,21 @@ class Web::UsersController < ApplicationController
   end
 
   def create
-    options = {
-      'end_point': 'users',
-      'token': cookies[:session_token]
-    }
-    body = UserSerializer.new().create_user(user_params)
-    response = ApiService.new().post(body, options)
-    if response[:status] == 200
-      redirect_to web_users_path
-    else
-      render :new
+    begin
+      options = {
+        'end_point': 'users',
+        'token': cookies[:session_token]
+      }
+      body = UserSerializer.new().create_user(user_params)
+      response = ApiService.new().post(body, options)
+      if response[:status] == 200
+        redirect_to web_users_path
+      else
+        flash.now[:success] = 'A ocurrido un error'
+        render :new
+      end
+    rescue Exception => e
+      render 'errors/400'
     end
   end
 
@@ -40,26 +51,35 @@ class Web::UsersController < ApplicationController
   end
 
   def update
-    options = {
-      'end_point': 'users/' + params["id"],
-      'token': cookies[:session_token]
-    }
-    body = UserSerializer.new().create_user(user_params)
-    response = ApiService.new().put(body, options)
-    if response[:status] == 200
-      redirect_to web_users_path
-    else
-      render :new
-    end   
+    begin
+      options = {
+        'end_point': 'users/' + params["id"],
+        'token': cookies[:session_token]
+      }
+      body = UserSerializer.new().create_user(user_params)
+      response = ApiService.new().put(body, options)
+      if response[:status] == 200
+        redirect_to web_users_path
+      else
+        flash.now[:success] = 'A ocurrido un error'
+        render :new
+      end   
+    rescue Exception => e
+      render 'errors/400'
+    end
   end
 
   def destroy
-    options = {
-      'end_point': 'users/' + params["id"],
-      'token': cookies[:session_token]
-    }
-    response = ApiService.new().delete(options)
-    redirect_to web_users_path
+    begin
+      options = {
+        'end_point': 'users/' + params["id"],
+        'token': cookies[:session_token]
+      }
+      response = ApiService.new().delete(options)
+      redirect_to web_users_path
+    rescue Exception => e
+      render 'errors/400'
+    end
   end
 
   private

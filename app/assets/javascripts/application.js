@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
-//= require iziToast
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require bootstrap/modal

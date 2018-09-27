@@ -6,15 +6,21 @@ class Web::ReportsController < ApplicationController
   before_action :set_time, only: [:me, :employee]
 
   def index
-    options = {
-      'end_point': 'users?workday=false',
-      'token': cookies[:session_token]
-    }
-    response = ApiService.new().get(options)
-    @users = []
-    if response[:status] == 200
-      @users = UserSerializer.new().users(response[:data])
-    end    
+    begin
+      options = {
+        'end_point': 'users?workday=false',
+        'token': cookies[:session_token]
+      }
+      response = ApiService.new().get(options)
+      @users = []
+      if response[:status] == 200
+        @users = UserSerializer.new().users(response[:data])
+      else
+        flash.now[:success] = 'A ocurrido un error'
+      end    
+    rescue Exception => e
+      render 'errors/400'
+    end
   end
 
   def me
@@ -28,10 +34,12 @@ class Web::ReportsController < ApplicationController
       @amount_time = ""
       if response[:status] == 200
         @workdays, @amount_time = WorkdaySerializer.new().workdays(response[:data])
+      else
+        flash.now[:success] = 'A ocurrido un error'
       end
       render :me_report
     rescue Exception => e
-      p e
+      render 'errors/400'
     end    
   end
 
@@ -46,10 +54,12 @@ class Web::ReportsController < ApplicationController
       @amount_time = ""
       if response[:status] == 200
         @workdays, @amount_time = WorkdaySerializer.new().workdays(response[:data])
+      else
+        flash.now[:success] = 'A ocurrido un error'
       end
       render :employee_report
     rescue Exception => e
-      p e
+      render 'errors/400'
     end
   end
 
