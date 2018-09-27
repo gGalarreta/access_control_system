@@ -2,16 +2,15 @@
   <%= form_tag search_web_reports_path, method: :get, remote: true, class: "form-horizontal sical-form" do %>
     <%= hidden_field_tag('user_id', user_id) %>
     <div class="form-group row">
-      <div class="col-md-3 col-fom-label">
+      <div class="col-md col-fom-label">
         <%= label_tag :Fecha %>
       </div>
-      <div class="col-md-9 input-wrapper">
+      <div class="col-md input-wrapper">
         <%= date_field_tag('time') %>
       </div>
-    </div>
-    <div class="sical-form-buttons">
-      <div class="text-center">
+      <div class="col-md col-fom-label">
         <%= submit_tag "Buscar", class: "btn btn-primary sical-submit-btn" %>
+      </div>
     </div>
   </div>
   <% end %>
