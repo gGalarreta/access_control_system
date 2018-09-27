@@ -4,6 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum gender: [:male, :female, :other]
+  enum role: [:employee, :admin]
 
   has_many :sessions, dependent: :destroy
   has_many :workdays, dependent: :destroy

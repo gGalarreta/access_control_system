@@ -17,8 +17,6 @@ class Web::UsersController < ApplicationController
   end
 
   def new
-    params["user"] = {}
-    @user = UserSerializer.new().user(params)
   end
 
   def create
