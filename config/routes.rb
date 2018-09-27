@@ -32,8 +32,10 @@ Rails.application.routes.draw do
     end
     resources :users
     resources :workdays, only: [:index] do
-      put :checkin, on: :collection
-      put :checkout, on: :collection
+      get :checkin, on: :member
+      put :register_checkin, on: :collection
+      get :checkout, on: :member
+      put :register_checkout, on: :collection
     end
     resources :reports, only: [:index] do
       get :me, on: :collection

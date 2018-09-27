@@ -14,11 +14,47 @@ class Web::WorkdaysController < ApplicationController
   end
 
   def checkin
-    
+    @user_id = params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def checkout
-    
+    @user_id = params[:id]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def register_checkin
+    options = {
+      'end_point': 'users/' + params[:user_id] + '/workdays/checkin'
+    }
+    body = {
+      "register": 
+        {"time": params[:time]}
+      }
+    response = ApiService.new().put(body, options)
+    if response[:status] == 200
+      redirect_to web_users_path
+    end
+  end
+
+  def register_checkout
+    options = {
+      'end_point': 'users/' + params[:user_id] + '/workdays/checkout'
+    }
+    body = {
+      "register": 
+        {"time": params[:time]}
+      }
+    response = ApiService.new().put(body, options)
+    if response[:status] == 200
+      redirect_to web_users_path
+    end
   end
   
 end

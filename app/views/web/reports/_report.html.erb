@@ -1,5 +1,5 @@
 <div class="material-datatables">
-  <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
+  <table id="employee-datatable" class="table table-hover sical-data-table" >
     <thead>
       <tr>
         <th>Lunes</th>
@@ -7,17 +7,27 @@
         <th>Miercoles</th>
         <th>Jueves</th>
         <th>Viernes</th>
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
       <% workdays.each do |workday| %>
         <td>
           <% workday.data.each do |worked_days| %>
-            <%= worked_days.status %>
-            <%= Time.parse(worked_days.time).strftime("%I:%M%p") %>
+            <% if worked_days.status == "in" %>
+              <div class="checkin">
+                Entro: <%= Time.parse(worked_days.time).strftime("%I:%M%p") %>
+              </div>
+            <% else %>
+              <div class="checkout">
+                Salio: <%= Time.parse(worked_days.time).strftime("%I:%M%p") %>
+              </div>
+            <% end %>
+            <br>
           <% end %>
         </td>
       <% end %>
+      <td><%= amount_time %> minutos</td>
     </tbody>
   </table>
 </div>

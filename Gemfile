@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 
+gem 'jquery-ui-rails'
+
 #Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
 gem 'rest-client'
 
@@ -43,6 +45,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web
 gem 'bootstrap', '~> 4.0.0.alpha6'
+
+#bootstrap-sass is a Sass-powered version of Bootstrap 3, ready to drop right into your Sass powered applications.
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 #Pg is the Ruby interface to the {PostgreSQL RDBMS}
 gem 'pg', '~> 1.0'

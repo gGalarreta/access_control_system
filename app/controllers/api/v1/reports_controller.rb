@@ -6,7 +6,7 @@ class Api::V1::ReportsController < Api::ApiV1Controller
   def employees
     begin
       if params[:time]
-        @workdays = @user.weekly_report params[:time]
+        @workdays, @amount_time = @user.weekly_report params[:time]
         render :weekly
       else
         response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "Time is required", status_code: 422)
@@ -19,7 +19,7 @@ class Api::V1::ReportsController < Api::ApiV1Controller
   def admin
     begin
       if params[:time]
-        @workdays = current_user.weekly_report params[:time]
+        @workdays, @amount_time = current_user.weekly_report params[:time]
         render :weekly
       else
         response_error(title: 'Could not register', reasons: {params: "are invalid"}, description: "Time is required", status_code: 422)

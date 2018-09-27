@@ -1,1 +1,1 @@
-User.create(first_name: "Gustavo", last_name: "Galarreta Chapilliquen", phone: "555555555", gender: 0, email: "gustavo.galarreta@pucp.pe", password: "password1857")
+User.create(first_name: "Gustavo", last_name: "Galarreta Chapilliquen", phone: "555555555", gender: 0, role: 1, email: "gustavo.galarreta@pucp.pe", password: "password1857")
