@@ -6,6 +6,9 @@ class Api::V1::WorkdaysControllerTest < ActionController::TestCase
     #DATA
     user = users(:user)
     time = Time.now.to_s
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
+
 
     put :checkin, params: { user_id: user.id, register: {"time": time } }
     assert_response :success
@@ -23,6 +26,9 @@ class Api::V1::WorkdaysControllerTest < ActionController::TestCase
     #DATA
     user = users(:user)
     time = Time.now.to_s
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
+
 
     put :checkout, params: { user_id: user.id, register: {"time": time }}
     assert_response :success

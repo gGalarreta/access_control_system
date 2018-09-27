@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::ApiV1Controller
 
   before_action :set_user, only: [:update, :show, :destroy]
   before_action :set_workday, only: [:index, :create, :update, :show, :me]
-  skip_before_action :verify_current_user, only: [:index, :create, :update, :show, :destroy]
+  skip_before_action :verify_current_user, only: [:create]
 
   def index
     begin

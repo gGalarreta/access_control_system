@@ -3,6 +3,10 @@ require 'test_helper'
 class Api::V1::UsersControllerTest < ActionController::TestCase
 
   test "GET #index" do
+    #DATA
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
+    
     get :index
     assert_response :success
   end
@@ -52,7 +56,8 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   test "PUT #update" do
 
     #DATA
-
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
     user_mock = users(:user)
     user = 
     {
@@ -89,7 +94,12 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   end
 
   test "GET #show" do
+    #DATA
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
     user = users(:user)
+
+
     get :show, params: { id: user.id, format: 'json'}
     assert_response :success
     get :show, params: { id: "" }
@@ -102,6 +112,10 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
   end
 
   test "DELETE #destroy" do
+    #DATA
+    session = sessions(:session)
+    @request.headers['HTTP_AUTHORIZATION'] = session.access_token
+    
     user = users(:user)
     delete :destroy, params: { id: user.id }
     assert_response :success
