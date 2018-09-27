@@ -64,8 +64,9 @@ class Web::ReportsController < ApplicationController
   end
 
   def search
+    @user_id = params["user_id"]
     options = {
-      'end_point': 'users/' + params["user_id"] + '/reports/weekly?time=' + params["time"],
+      'end_point': 'users/' +  @user_id + '/reports/weekly?time=' + params["time"],
       'token': cookies[:session_token]
     }
     response = ApiService.new().get(options)
