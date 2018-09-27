@@ -1,5 +1,8 @@
 class Workday < ApplicationRecord
 
+  validates :status, presence: true
+  validates :time, presence: true
+
   enum status: [:in, :out]
 
   belongs_to :user
