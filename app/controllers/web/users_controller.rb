@@ -14,6 +14,8 @@ class Web::UsersController < ApplicationController
       @users = []
       if response[:status] == 200
         @users = UserSerializer.new().users(response[:data])
+      else
+        flash.now[:success] = 'A ocurrido un error'
       end
     rescue Exception => e
       render 'errors/400'
@@ -34,6 +36,7 @@ class Web::UsersController < ApplicationController
       if response[:status] == 200
         redirect_to web_users_path
       else
+        flash.now[:success] = 'A ocurrido un error'
         render :new
       end
     rescue Exception => e
@@ -58,6 +61,7 @@ class Web::UsersController < ApplicationController
       if response[:status] == 200
         redirect_to web_users_path
       else
+        flash.now[:success] = 'A ocurrido un error'
         render :new
       end   
     rescue Exception => e

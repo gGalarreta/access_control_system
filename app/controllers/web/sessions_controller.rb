@@ -12,8 +12,10 @@ class Web::SessionsController < ApplicationController
       response = ApiService.new().post(body, options)
       if response[:status] == 200
         cookies[:session_token] = response[:data]["session"]["access_token"]
+        flash.now[:success] = "Bienvenido"
         redirect_to web_users_path
       else
+        flash.now[:success] = 'A ocurrido un error'
         render :new
       end
     rescue Exception => e
@@ -30,6 +32,8 @@ class Web::SessionsController < ApplicationController
       response = ApiService.new().delete(options)
       if response[:status] == 200
         redirect_to :root
+      else
+        flash.now[:success] = 'A ocurrido un error'
       end
     rescue Exception => e
       redirect_to :root
