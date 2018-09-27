@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def global_variables
     @signed_in = true
     @is_admin = is_user_admin?
+    @controller = params[:controller]
   end
 
   def is_user_admin?
