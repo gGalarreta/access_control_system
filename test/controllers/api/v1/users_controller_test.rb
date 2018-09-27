@@ -44,13 +44,26 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     post :create, params: { user: new_user, format: 'json' }
     assert_response :success
 
+
     #ERRORS
+    #phone invalid
+    new_user["phone"] = "hello"
+    post :create, params: { user: existed_user }
+    assert_response 422
+
     #email taken
     post :create, params: { user: existed_user }
     assert_response 422
+
     #invalid email format
     post :create, params: { user: user_with_invalid_email }
-    assert_response 422    
+    assert_response 422
+
+    #invalid password
+    new_user['phone'] = '993702585'
+    new_user['password'] = '123'
+    post :create, params: { user: new_user }
+    assert_response 422 
   end
 
   test "PUT #update" do
@@ -85,11 +98,18 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     #without params
     put :update, params: { id: user_mock.id, format: 'json' }
     assert_response 422
+
     #without id
     put :update, params: { id: "" }
-    assert_response 400 
+    assert_response 400
+
     #email taken
     put :update, params: { id: user_mock.id, user: existed_user }
+    assert_response 422
+
+    #phone invalid
+    existed_user["phone"] = "hello"
+    post :create, params: { user: existed_user }
     assert_response 422
   end
 
@@ -102,6 +122,8 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
 
     get :show, params: { id: user.id, format: 'json'}
     assert_response :success
+
+    #ERROR
     get :show, params: { id: "" }
     assert_response 400
   end
@@ -119,6 +141,8 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
     user = users(:user)
     delete :destroy, params: { id: user.id }
     assert_response :success
+
+    #ERROR
     delete :destroy, params: { id: "" }
     assert_response 400
   end

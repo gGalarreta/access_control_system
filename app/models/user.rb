@@ -3,7 +3,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :phone, numericality: true, length: { minimum:  7, maximum:  9 }
+  validates :phone, numericality: true, length: { minimum:  7, maximum:  9 }, allow_nil: true
 
   enum gender: [:male, :female, :other]
   enum role: [:employee, :admin]

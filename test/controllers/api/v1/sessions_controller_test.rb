@@ -24,6 +24,23 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     post :create, params: { user: existed_user }
     assert_response 422
 
+    #invalid email
+    existed_user['email'] = "hello"
+    post :create, params: { user: existed_user }
+    assert_response 422
+
+    #invalid password
+    existed_user['email'] = "gustavo.galarreta@pucp.pe"
+    existed_user['password'] = "123"
+    post :create, params: { user: existed_user }
+    assert_response 422
+
+    #missing params
+    existed_user['email'] = ""
+    existed_user['password'] = ""
+    post :create, params: { user: existed_user }
+    assert_response 422
+
   end
 
   test "DELETE #destroy" do
