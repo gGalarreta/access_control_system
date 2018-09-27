@@ -25,8 +25,9 @@ class Web::ReportsController < ApplicationController
       }
       response = ApiService.new().get(options)
       @workdays = []
+      @amount_time = ""
       if response[:status] == 200
-        @workdays = WorkdaySerializer.new().workdays(response[:data])
+        @workdays, @amount_time = WorkdaySerializer.new().workdays(response[:data])
       end
       render :me_report
     rescue Exception => e
@@ -42,8 +43,9 @@ class Web::ReportsController < ApplicationController
       }
       response = ApiService.new().get(options)
       @workdays = []
+      @amount_time = ""
       if response[:status] == 200
-        @workdays = WorkdaySerializer.new().workdays(response[:data])
+        @workdays, @amount_time = WorkdaySerializer.new().workdays(response[:data])
       end
       render :employee_report
     rescue Exception => e

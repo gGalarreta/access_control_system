@@ -1,5 +1,3 @@
 (function() {
-  //$(".herbert").on('click', function(){
-  //  $("#modal-user").modal();
-  //})
+  $('#customer_drop_off_date').datepicker();
 })();

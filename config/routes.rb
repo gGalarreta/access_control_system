@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :workdays, only: [:index] do
       get :checkin, on: :member
       put :register_checkin, on: :collection
-      get :checkout, on: :collection
+      get :checkout, on: :member
       put :register_checkout, on: :collection
     end
     resources :reports, only: [:index] do

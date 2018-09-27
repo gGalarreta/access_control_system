@@ -3,7 +3,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <h4 class="modal-title" id="time-station-modal-label">Registro de Hora</h4>
     </div>
-      <%= form_tag register_checkin_web_workdays_path, method: :put, class: "form-horizontal validate sical-form sical-form-validated" do %>
+      <%= form_tag register_checkout_web_workdays_path, method: :put, class: "form-horizontal validate sical-form sical-form-validated" do %>
         <%= hidden_field_tag('user_id', user_id) %>
         <div class="form-group row">
           <div class="col-md-3 col-fom-label">

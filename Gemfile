@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 
+gem 'jquery-ui-rails'
+
 #Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
 gem 'rest-client'
 

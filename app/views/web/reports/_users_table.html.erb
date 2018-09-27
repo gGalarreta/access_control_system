@@ -13,7 +13,7 @@
           <td><%= user.first_name %> <%= user.last_name %> </td>
           <td><%= user.email %></td>
           <td>
-            <%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, employee_web_report_path(user.id), class: "btn btn-info btn-sm" %>
+            <%= link_to 'Ver reporte', employee_web_report_path(user.id), class: "btn btn-primary" %>
           </td>
         </tr>
       <% end %>

@@ -13,7 +13,8 @@
           <td><%= user.first_name %> <%= user.last_name %> </td>
           <td><%= user.email %></td>
           <td>
-            <%= link_to 'Checkin', checkin_web_workday_path(user.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}%>
+            <%= link_to 'Entrada', checkin_web_workday_path(user.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-success" }%>
+            <%= link_to 'Salida', checkout_web_workday_path(user.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-danger" }%>
           </td>
         </tr>
       <% end %>

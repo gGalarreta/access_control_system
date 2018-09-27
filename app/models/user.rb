@@ -31,6 +31,7 @@ class User < ApplicationRecord
 
   def weekly_report current_date
     workdays = self.get_workdays current_date
+    amount_time = 0
     weekly_report_data = []
     BEGINNING_OF_WORK_WEEK.upto(END_OF_WORK_WEEK) do |day_of_week|
       workday = {
@@ -39,9 +40,14 @@ class User < ApplicationRecord
               workday.time.strftime("%u").to_i == day_of_week
             }.as_json
       }
+      if workday['data'] and (workday['data'].size == 2)
+        checkin = Time.parse(workday['data'].first[:time])
+        checkout = Time.parse(workday['data'].second[:time])
+        amount_time+=(checkout-checkin)/60
+      end
       weekly_report_data.append(workday.as_json)
     end
-    weekly_report_data
+    return weekly_report_data, amount_time
   end
 
 end

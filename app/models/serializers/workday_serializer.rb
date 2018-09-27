@@ -7,12 +7,12 @@ class WorkdaySerializer
   def workdays data
     worked_days = []
     data["workdays"].each do |worked_day|
-      data = worked_day["data"].map { |workday|
+      workday_data = worked_day["data"].map { |workday|
         workday_object(workday)
       }
-      worked_days.append(worked_day_object(worked_day, data))
+      worked_days.append(worked_day_object(worked_day, workday_data))
     end
-    worked_days
+    return worked_days, data["report_time"]
   end
 
 
