@@ -4,16 +4,20 @@ class Web::SessionsController < ApplicationController
   end
 
   def create
-    options = {
-      'end_point': 'sessions',
-    }
-    body = SessionSerializer.new().create_request(session_params)
-    response = ApiService.new().post(body, options)
-    if response[:status] == 200
-      cookies[:session_token] = response[:data]["session"]["access_token"]
-      redirect_to web_users_path
-    else
-      render :new
+    begin
+      options = {
+        'end_point': 'sessions',
+      }
+      body = SessionSerializer.new().create_request(session_params)
+      response = ApiService.new().post(body, options)
+      if response[:status] == 200
+        cookies[:session_token] = response[:data]["session"]["access_token"]
+        redirect_to web_users_path
+      else
+        render js: iziToast.success({ title: 'Al parecer ocurrio un error', message: 'Funciona shit'});
+      end
+    rescue Exception => e
+      #render "errors/errors_messages", locals: {message: e}
     end
   end
 

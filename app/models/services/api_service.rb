@@ -44,17 +44,24 @@ class ApiService
 
     def request_handler request, params
       request_params = Hash.new
-      request_params[:method] = request[:method]
-      request_params[:url] = end_point_handler params
-      request_params[:timeout] = timeout
-      request_params[:open_timeout] = open_timeout
-      request_params[:headers] = token_handler params
-      request_params[:payload] = request[:payload] if request[:payload]
-      service_response = RestClient::Request.execute(request_params)
-      response = {
-        "status": service_response.code,
-        "data": JSON.parse(service_response)
-      }
+      begin
+        request_params[:method] = request[:method]
+        request_params[:url] = end_point_handler params
+        request_params[:timeout] = timeout
+        request_params[:open_timeout] = open_timeout
+        request_params[:headers] = token_handler params
+        request_params[:payload] = request[:payload] if request[:payload]
+        service_response = RestClient::Request.execute(request_params)
+        response = {
+          "status": service_response.code,
+          "data": JSON.parse(service_response)
+        }
+      rescue Exception => e
+        response = {
+          "status": "400",
+          "data": ""
+        }
+      end
     end
 
     def token_handler params
