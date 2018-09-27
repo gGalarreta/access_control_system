@@ -14,20 +14,24 @@ class Web::SessionsController < ApplicationController
         cookies[:session_token] = response[:data]["session"]["access_token"]
         redirect_to web_users_path
       else
-        render js: iziToast.success({ title: 'Al parecer ocurrio un error', message: 'Funciona shit'});
+        render :new
       end
     rescue Exception => e
-      #render "errors/errors_messages", locals: {message: e}
+      render 'errors/400'
     end
   end
 
   def logout
-    options = {
-      'end_point': 'sessions',
-      'token': cookies[:session_token]
-    }
-    response = ApiService.new().delete(options)
-    if response[:status] == 200
+    begin
+      options = {
+        'end_point': 'sessions',
+        'token': cookies[:session_token]
+      }
+      response = ApiService.new().delete(options)
+      if response[:status] == 200
+        redirect_to :root
+      end
+    rescue Exception => e
       redirect_to :root
     end
   end
