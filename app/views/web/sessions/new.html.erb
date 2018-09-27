@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card sical-login">
+    <div class="login-title"><h1>Inicio de Sesión</h1></div>
+    <div class="login-content">
+      <div class="login-logo">
+        <%= image_tag "login.png", class: "login-img" %>
+      </div>
+      <div class="login-form">
+        <%= form_tag web_sessions_path, method: :post do %>
+          <div class="field login-field">
+            <%= label_tag :email %>
+            <%= email_field(:user, :email, class: "form-control")  %>
+          </div>
+
+          <div class="field login-field">
+            <%= label_tag :password %>
+            <%= password_field_tag('user[password]', "", class: "form-control") %>
+          </div>
+
+          <div class="text-center">
+            <%= submit_tag "Entrar", class: "btn btn-info btn-fill btn-wd login-button" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,42 @@
+<div class="sidebar sical-sidebar">
+  <div class="logo sical-sidebar-logo">
+    <a href="/" class="simple-text">
+      Bienvenido
+    </a>
+  </div>
+  <div class="logo logo-mini sical-sidebar-mini-logo">
+    <a href="/" class="simple-text">
+      ACS
+    </a>
+  </div>
+  <div class="sidebar-wrapper sical-sidebar-wrapper">
+    <ul class="nav flex-column">
+      <% if @is_admin %>
+        <li class="d-flex flex-column <%= @controller ==  "web/users" ? "active" : "" %>">
+          <a class="nav-link" href= "/web/users" >
+            <i class="nav-icon fa fa-users"></i>
+            <p>Empleados</p>
+          </a>
+        </li>
+        <li class="d-flex flex-column <%= @controller ==  "web/workdays" ? "active" : "" %>">
+          <a class="nav-link" href= "/web/workdays" >
+            <i class="nav-icon fa fa-calendar"></i>
+            <p>Horarios</p>
+          </a>
+        </li>
+        <li class="d-flex flex-column <%= @controller ==  "web/reports" ? "active" : "" %>">
+          <a class="nav-link" href= "/web/reports" >
+            <i class="nav-icon fa fa-bar-chart"></i>
+            <p>Reportes</p>
+          </a>
+        </li>
+      <% end %>
+      <li class="d-flex flex-column <%= @controller ==  "web/reports/me" ? "active" : "" %>">
+        <a class="nav-link" href= "/web/reports/me" >
+          <i class="nav-icon fa fa-bar-chart"></i>
+          <p>Mi reporte</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

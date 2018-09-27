@@ -1,0 +1,26 @@
+  <div class="modal-content" >
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="time-station-modal-label">Registro de Hora</h4>
+    </div>
+      <%= form_tag register_checkout_web_workdays_path, method: :put, class: "form-horizontal validate sical-form sical-form-validated" do %>
+        <%= hidden_field_tag('user_id', user_id) %>
+        <div class="form-group row">
+          <div class="col-md-3 col-fom-label">
+            <%= label_tag 'Hora De Entrada' %>
+          </div>
+          <div class="col-md-9 input-wrapper">
+            <%= datetime_field_tag('time') %>
+          </div>
+        </div>
+        <div class="sical-form-buttons">
+          <div class="text-center">
+            <%= link_to "Cancelar", web_workdays_path, class: "btn btn-primary sical-btn-cancel" %>
+            <%= submit_tag "Guardar", class: "btn btn-primary sical-submit-btn" %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+
+<script type="text/javascript">
+</script>

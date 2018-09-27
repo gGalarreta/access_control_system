@@ -1,0 +1,28 @@
+<div class="material-datatables">
+  <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
+    <thead>
+      <tr>
+        <th>Empleado</th>
+        <th>Correo</th>
+        <th>Registro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %> </td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to 'Entrada', checkin_web_workday_path(user.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-success" }%>
+            <%= link_to 'Salida', checkout_web_workday_path(user.id),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-danger" }%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  </table>
+</div>
+
+<script>
+
+</script>

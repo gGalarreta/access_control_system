@@ -1,0 +1,22 @@
+<div class="material-datatables">
+  <table id="employee-datatable" class="table table-hover sical-data-table" data-placeholder="Buscar Empleados">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %> </td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to 'Ver reporte', employee_web_report_path(user.id), class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
