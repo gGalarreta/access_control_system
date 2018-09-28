@@ -23,6 +23,8 @@ class Web::UsersController < ApplicationController
   end
 
   def new
+    body = UserSerializer.new().create_user({})
+    @user = UserSerializer.new().user(body.stringify_keys)
   end
 
   def create

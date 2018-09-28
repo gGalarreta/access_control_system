@@ -31,7 +31,8 @@ class Web::WorkdaysController < ApplicationController
 
   def register_checkin
     options = {
-      'end_point': 'users/' + params[:user_id] + '/workdays/checkin'
+      'end_point': 'users/' + params[:user_id] + '/workdays/checkin',
+      'token': cookies[:session_token]
     }
     body = {
       "register": 
@@ -45,7 +46,8 @@ class Web::WorkdaysController < ApplicationController
 
   def register_checkout
     options = {
-      'end_point': 'users/' + params[:user_id] + '/workdays/checkout'
+      'end_point': 'users/' + params[:user_id] + '/workdays/checkout',
+      'token': cookies[:session_token]
     }
     body = {
       "register": 
