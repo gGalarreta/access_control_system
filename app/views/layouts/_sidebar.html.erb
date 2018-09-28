@@ -24,7 +24,7 @@
             <p>Horarios</p>
           </a>
         </li>
-        <li class="d-flex flex-column <%= ( @controller ==  "web/reports" and @action == "index" ) ? "active" : "" %>">
+        <li class="d-flex flex-column <%= ( @controller ==  "web/reports" and ["index", "employee"].include?(@action) ) ? "active" : "" %>">
           <a class="nav-link" href= "/web/reports" >
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>Reportes</p>
