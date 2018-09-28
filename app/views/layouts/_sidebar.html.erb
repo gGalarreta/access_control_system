@@ -24,14 +24,14 @@
             <p>Horarios</p>
           </a>
         </li>
-        <li class="d-flex flex-column <%= @controller ==  "web/reports" ? "active" : "" %>">
+        <li class="d-flex flex-column <%= ( @controller ==  "web/reports" and @action == "index" ) ? "active" : "" %>">
           <a class="nav-link" href= "/web/reports" >
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>Reportes</p>
           </a>
         </li>
       <% end %>
-      <li class="d-flex flex-column <%= @controller ==  "web/reports/me" ? "active" : "" %>">
+      <li class="d-flex flex-column <%= (@controller ==  "web/reports" and @action == "me" ) ? "active" : "" %>">
         <a class="nav-link" href= "/web/reports/me" >
           <i class="nav-icon fa fa-bar-chart"></i>
           <p>Mi reporte</p>

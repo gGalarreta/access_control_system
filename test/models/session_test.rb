@@ -12,10 +12,4 @@ class SessionTest < ActiveSupport::TestCase
     assert_not session.valid?
   end
 
-  test 'invalid session without token' do
-    user = users(:user)
-    session = Session.new(user_id: user.id, access_token: "")
-    assert_not session.valid?
-  end
-
 end

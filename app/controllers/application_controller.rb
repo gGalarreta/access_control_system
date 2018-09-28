@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     @signed_in = true
     @is_admin = is_user_admin?
     @controller = params[:controller]
+    @action = params[:action]
   end
 
   def is_user_admin?

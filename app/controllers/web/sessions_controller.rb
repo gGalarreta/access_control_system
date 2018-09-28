@@ -13,7 +13,7 @@ class Web::SessionsController < ApplicationController
       if response[:status] == 200
         cookies[:session_token] = response[:data]["session"]["access_token"]
         flash.now[:success] = "Bienvenido"
-        redirect_to web_users_path
+        redirect_to me_web_reports_path
       else
         flash.now[:success] = 'A ocurrido un error'
         render :new
