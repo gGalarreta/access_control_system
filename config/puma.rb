@@ -27,4 +27,4 @@ if ENV["RACK_ENV"] == "production"
   before_fork do
     ActiveRecord::Base.connection_pool.disconnect!
   end
-endg
+end
