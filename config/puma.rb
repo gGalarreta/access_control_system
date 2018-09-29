@@ -17,14 +17,3 @@ on_worker_boot do
   end
 
 end
-
-if ENV["RACK_ENV"] == "production"
-  workers ENV.fetch("WEB_CONCURRENCY") { 3 }
-  preload_app!
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
-  end
-  before_fork do
-    ActiveRecord::Base.connection_pool.disconnect!
-  end
-end
