@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  before_create :send_email_password
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,7 +13,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :workdays, dependent: :destroy
 
-  DEFAULT_PASSWORD = "acspass2018"
+  DEFAULT_PASSWORD = ENV['DEFAULT_USER_PASSWORD']
   BEGINNING_OF_WORK_WEEK = 1
   END_OF_WORK_WEEK = 5
 
@@ -19,6 +21,10 @@ class User < ApplicationRecord
     user = User.new user_params
     user.set_password_is_needed need_password
     user
+  end
+
+  def full_name
+    self.first_name.to_s + ' ' + self.last_name.to_s
   end
 
   def set_password_is_needed need_password
@@ -71,5 +77,10 @@ class User < ApplicationRecord
     end
     self
   end
+
+  private
+    def send_email_password
+      UserMailer.send_password(self).deliver_now
+    end
 
 end
