@@ -40,6 +40,9 @@ gem 'jbuilder', '~> 2.5'
 #jQuery UI's JavaScript, CSS, and image files packaged for the Rails 3.1+ asset pipeline
 #gem 'jquery-ui-rails'
 
+#Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
 #Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
 gem 'rest-client'
 
